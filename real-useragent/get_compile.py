@@ -23,9 +23,13 @@ class dumper:
             device = _item['deviceCategory']
             if device == 'mobile':
                 useragent = _item['userAgent']
+                if useragent in self.mobile:
+                    continue
                 self.mobile.append(useragent)
             elif device == 'desktop':
                 useragent = _item['userAgent']
+                if useragent in self.desktop:
+                    continue
                 self.desktop.append(useragent)
         return
 
@@ -46,8 +50,8 @@ mobile_file = "mobile_useragent.txt"
 with open(desktop_file, "w") as f:
     for i in desktop:
         f.write(f"{i.strip()}\n")
-with open(mobile_file, "w") as fc:
-    for ix in mobile:
-        fc.write(f"{ix.strip()}\n")
+with open(mobile_file, "w") as f:
+    for i in mobile:
+        f.write(f"{i.strip()}\n")
 
 print(f"{gr}Successfully Created New File with Updated User Agents{r}")

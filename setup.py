@@ -22,7 +22,7 @@ def get_version(package):
 version = get_version('real_useragent')
 setup(
     name='real_useragent',
-    version="1.0.3",
+    version=version,
     description='Get Real user agent from auto update',
     long_description=read_file('README.md'),
     long_description_content_type='text/markdown',

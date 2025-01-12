@@ -71,7 +71,8 @@ jobs:
       run: |
         git config --global user.name 'github-actions'
         git config --global user.email 'github-actions@github.com'
-        git add real_useragent/*
+        git add real_useragent/desktop_useragent.txt
+        git add real_useragent/mobile_useragent.txt
         git add .
         git commit -m 'version Update Mode'
         git push origin main
@@ -134,5 +135,5 @@ jobs:
           Programmer and Owner: @Pymmdrza
 
         files: |
-          dist/real-useragent-${{ env.NEW_VERSION }}.tar.gz
-          dist/real-useragent-${{ env.NEW_VERSION }}-py3-none-any.whl
+          dist/real_useragent-${{ env.NEW_VERSION }}.tar.gz
+          dist/real_useragent-${{ env.NEW_VERSION }}-py3-none-any.whl

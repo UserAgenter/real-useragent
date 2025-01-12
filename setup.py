@@ -3,14 +3,14 @@ import os
 
 def read_file(_file):
     current = os.path.abspath(os.path.dirname(__file__))
-    _github_path = os.path.join(current, '.github', _file)
+    _github_path = os.path.join(current, _file)
     with open(_github_path) as f:
         _data = f.read()
     return _data
 
 
 setup(
-    name='real-useragenter',
+    name='real_useragenter',
     version="1.0.3",
     description='Get Real user agent from auto update',
     long_description=read_file('README.md'),

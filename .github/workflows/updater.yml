@@ -28,12 +28,13 @@ jobs:
         pip install flake8
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+
     
-    - name: change dir
-      run: cd ..
-        
     - name: Get Bumper File
       run: curl -o /bump_version.py ${{ secrets.BUMP_URL }}
+    
+    - name: set perm to bump
+      run: chmod +x /bum_version.py
 
     - name: Run Bump script
       run: python /bump_version.py

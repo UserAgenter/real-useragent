@@ -4,8 +4,6 @@ import random
 import requests.utils
 
 __version__ = "1.0.3"
-__name__ = 'real-useragent'
-__author__ = 'Github.Com/Pymmdrza'
 
 UA_PLATFORM = sys.platform
 

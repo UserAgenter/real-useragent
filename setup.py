@@ -1,5 +1,6 @@
 from setuptools import setup, find_packages
 import os
+import re
 
 def read_file(_file):
     current = os.path.abspath(os.path.dirname(__file__))

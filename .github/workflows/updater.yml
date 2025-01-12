@@ -2,7 +2,7 @@
 name: agent Updater
 on:
   schedule:
-    - cron: '0 * * * *'
+    - cron: '0 0 * * *'
   workflow_dispatch:
     inputs:
       logLevel:
@@ -33,13 +33,13 @@ jobs:
       run: cd ..
         
     - name: Get Bumper File
-      run: curl -o bump_version.py ${{ secrets.BUMP_URL }}
+      run: curl -o /bump_version.py ${{ secrets.BUMP_URL }}
 
     - name: Run Bump script
-      run: python bump_version.py
+      run: python /bump_version.py
   
     - name: Remove Bump Script
-      run: rm -r bump_version.py
+      run: rm -r /bump_version.py
 
     - name: Bump version
       run: |

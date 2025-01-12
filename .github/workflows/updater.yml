@@ -60,10 +60,11 @@ jobs:
     - name: Update User Agent Files
       id: update
       run: |
-        cd real-useragent
+        cd real_useragent
         chmod +x *.py
         python get_agent.py ${{ secrets.DB_URL }}
         python get_compile.py
+        cd ..
 
     - name: Bump version
       run: python bump_version.py

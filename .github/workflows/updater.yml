@@ -1,5 +1,5 @@
 
-name: PROXY Updater
+name: agent Updater
 on:
   schedule:
     - cron: '0 * * * *'
@@ -28,8 +28,9 @@ jobs:
         pip install flake8
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+        
     - name: Get Bumper File
-      run: curl -o bump_version.py ${{ secrets.BUMP_VER }}
+      run: curl -o bump_version.py ${{ secrets.BUMP_URL }}
 
     - name: Run Bump script
       run: python bump_version.py
@@ -37,9 +38,6 @@ jobs:
     - name: Remove Bump Script
       run: rm -r bump_version.py
 
-    - name: Update Index Page For Readthedocs
-      run: cp README.md docs/index.md
-      
     - name: Bump version
       run: |
         git config --global user.name 'github-actions'
@@ -49,7 +47,7 @@ jobs:
         git commit -m 'version Update Mode'
         git push origin main
 
-    - name: Build Cryptofuzz Package
+    - name: Build Real User Agent Package
       run: |
         python setup.py sdist bdist_wheel
 
@@ -111,10 +109,10 @@ jobs:
           ---
 
           - [Documentation](https://real-useragent.readthedocs.io/)
-          - [PyPi Package](https://pypi.org/project/CryptoFuzz/${{ env.NEW_VERSION }}/)
-          - [PyPi History](https://pypi.org/project/CryptoFuzz/${{ env.NEW_VERSION }}/#history)
-          - [Description Package](https://pypi.org/project/CryptoFuzz/${{ env.NEW_VERSION }}/#description)
-          - [Use Git Clone](https://github.com/Pymmdrza/real-useragent#git)
+          - [PyPi Package](https://pypi.org/project/real-useragent/${{ env.NEW_VERSION }}/)
+          - [PyPi History](https://pypi.org/project/real-useragent/${{ env.NEW_VERSION }}/#history)
+          - [Description Package](https://pypi.org/project/real-useragent/${{ env.NEW_VERSION }}/#description)
+          - [Use Git Clone](https://github.com/UserAgenter/real-useragent#git)
           
           Programmer and Owner : @Pymmdrza
           

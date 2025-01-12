@@ -66,8 +66,8 @@ jobs:
         python get_compile.py
         cd ..
 
-    - name: Bump version
-      run: python bump_version.py
+    - name: remove file Bump version
+      run: rm -r bump_version.py
 
     - name: Build and Setup Package
       run: python setup.py sdist bdist_wheel

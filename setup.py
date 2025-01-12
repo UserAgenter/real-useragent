@@ -9,8 +9,18 @@ def read_file(_file):
     return _data
 
 
+def get_version(package):
+    """
+    Return package version as listed in `__version__` in `init.py`.
+    """
+    with open(os.path.join(package, '__init__.py'), 'rb') as init_py:
+        src = init_py.read().decode('utf-8')
+        return re.search("__version__ = ['\"]([^'\"]+)['\"]", src).group(1)
+
+
+version = get_version('real_useragent')
 setup(
-    name='real_useragenter',
+    name='real_useragent',
     version="1.0.3",
     description='Get Real user agent from auto update',
     long_description=read_file('README.md'),

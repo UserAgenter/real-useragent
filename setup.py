@@ -17,7 +17,7 @@ setup(
     long_description_content_type='text/markdown',
     url='https://github.com/useragenter/real-useragent',
     author='Mohammadreza (MMDRZA)',
-    author_email='Pymmdrza@gmail',
+    author_email='Pymmdrza@gmail.com',
     license='MIT',
     packages=find_packages(),
     include_package_data=True,

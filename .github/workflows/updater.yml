@@ -86,10 +86,10 @@ jobs:
         name: "Release v${{ env.NEW_VERSION }}"
         body: |
           ## Real User Agent New Release `${{ env.NEW_VERSION }}`
-
+          
           > [!NOTE] 
           > A new version of Real User Agent has been released: `v${{ env.NEW_VERSION }}`. Check out the latest features and updates in this release.
-
+          
           ### Installation Guide:
 
           #### **Windows**
@@ -121,10 +121,10 @@ jobs:
           - [**PyPI Package**](https://pypi.org/project/real-useragent/${{ env.NEW_VERSION }}/)
           - [**PyPI History**](https://pypi.org/project/real-useragent/${{ env.NEW_VERSION }}/#history)
           - [**Description**](https://pypi.org/project/real-useragent/${{ env.NEW_VERSION }}/#description)
-          - [**Git Clone Guide**](https://github.com/UserAgenter/real-useragent#git)
-
-          Programmer and Owner : @Pymmdrza
+          - [**GitHub Repository**](https://github.com/UserAgenter/real-useragent)
+          
+          Programmer and Owner: @Pymmdrza
 
         files: |
           dist/real-useragent-${{ env.NEW_VERSION }}.tar.gz
-          dist/real_useragent-${{ env.NEW_VERSION }}-py3-none-any.whl
+          dist/real-useragent-${{ env.NEW_VERSION }}-py3-none-any.whl

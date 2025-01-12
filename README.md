@@ -14,7 +14,7 @@ pip install real-useragent
 
 ```python
 import requests
-import real-useragent
+import real_useragent
 
 s = requests.Session()
 print(s.headers['User-Agent'])

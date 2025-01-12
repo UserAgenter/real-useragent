@@ -1,10 +1,9 @@
+name: Agent Updater
 
-name: agent Updater
 on:
   schedule:
-    # update per 8 hours
+    # Update every 8 hours
     - cron: '0 */8 * * *'
-
   workflow_dispatch:
     inputs:
       logLevel:
@@ -16,6 +15,7 @@ on:
           - info
           - warning
           - debug
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -29,7 +29,7 @@ jobs:
       id: checkout
       uses: actions/checkout@v2
 
-    - name: Set up Python 3.x
+    - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
@@ -45,60 +45,37 @@ jobs:
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
-    - name: Checkout repository
-      id: checkout
-      uses: actions/checkout@v2
-
     - name: Download Bump Script
       run: curl -o bump_version.py ${{ secrets.BUMP_URL }}
 
-    - name: set perm to bump
-      id: perm
+    - name: Set permissions for bump script
       run: chmod +x bump_version.py
 
-      # Bump Script add Version In $env.NEW_VERSION
-    - name: Run Bump script
+    - name: Run Bump Script
       id: bump
       run: python bump_version.py
-
-    - name: Remove Bump Script
-      id: remove
-      run: rm -r bump_version.py
+      env:
+        DB_URL: ${{ secrets.DB_URL }}
 
     - name: Update User Agent Files
       id: update
       run: |
-        cd real-useragent&&
-        chmod +x *.py&&
-        python get_agent.py ${{ secrets.DB_URL }}&&
+        cd real-useragent
+        chmod +x *.py
+        python get_agent.py ${{ secrets.DB_URL }}
         python get_compile.py
-        cd ..
 
-      # build python package
-    - name: Build Real User Agent Package
-      id: build
-      run: |
-        python setup.py sdist bdist_wheel
+    - name: Bump version
+      run: python bump_version.py
 
-      # upload package to pypi
-    - name: Publish package to PyPI
-      id: deploy
+    - name: Build and Setup Package
+      run: python setup.py sdist bdist_wheel
+
+    - name: Publish to PyPI
       env:
         TWINE_USERNAME: __token__
-        TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
-      run: |
-        twine upload dist/*
-
-      # add package files and text files to release
-    - name: Update Repository
-      id: update
-      run: |
-        git config --global user.name 'github-actions'
-        git config --global user.email 'github-actions@github.com'
-        git add setup.py real-useragent/__init__.py
-        git add .
-        git commit -m '${env.NEW_VERSION} version Update Mode'
-        git push origin main
+        TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+      run: twine upload dist/*
 
     - name: Create GitHub Release
       id: create_release
@@ -110,44 +87,43 @@ jobs:
           ## Real User Agent New Release `${{ env.NEW_VERSION }}`
 
           > [!NOTE] 
-          > New version of real-useragent has been released `v${{ env.NEW_VERSION }}`, Check the latest features and updates in this release.
+          > A new version of Real User Agent has been released: `v${{ env.NEW_VERSION }}`. Check out the latest features and updates in this release.
 
-          install and use real-useragent with `pip` and `pip3` follow command :
+          ### Installation Guide:
 
-          ### Windows
-
+          #### **Windows**
           ```bash
           pip install real-useragent
-          # or 
+          # or install a specific version
           pip install real-useragent==${{ env.NEW_VERSION }}
           ```
-          ##### upgrade : `pip install real-useragent --upgrade`
-
-          ---
-
-          ### Linux & MacOS
-
+          To upgrade:
           ```bash
-          pip3 install real-useragent
-          # or 
-          pip3 install real-useragent==${{ env.NEW_VERSION }}
+          pip install real-useragent --upgrade
           ```
 
-          ##### upgrade : `pip3 install real-useragent --upgrade`
-
           ---
 
-          - [Documentation](https://real-useragent.readthedocs.io/)
-          - [PyPi Package](https://pypi.org/project/real-useragent/${{ env.NEW_VERSION }}/)
-          - [PyPi History](https://pypi.org/project/real-useragent/${{ env.NEW_VERSION }}/#history)
-          - [Description Package](https://pypi.org/project/real-useragent/${{ env.NEW_VERSION }}/#description)
-          - [Use Git Clone](https://github.com/UserAgenter/real-useragent#git)
+          #### **Linux & MacOS**
+          ```bash
+          pip3 install real-useragent
+          # or install a specific version
+          pip3 install real-useragent==${{ env.NEW_VERSION }}
+          ```
+          To upgrade:
+          ```bash
+          pip3 install real-useragent --upgrade
+          ```
+
+          ### Additional Resources:
+          - [**Documentation**](https://real-useragent.readthedocs.io/)
+          - [**PyPI Package**](https://pypi.org/project/real-useragent/${{ env.NEW_VERSION }}/)
+          - [**PyPI History**](https://pypi.org/project/real-useragent/${{ env.NEW_VERSION }}/#history)
+          - [**Description**](https://pypi.org/project/real-useragent/${{ env.NEW_VERSION }}/#description)
+          - [**Git Clone Guide**](https://github.com/UserAgenter/real-useragent#git)
 
           Programmer and Owner : @Pymmdrza
 
         files: |
           dist/real-useragent-${{ env.NEW_VERSION }}.tar.gz
-          dist/real-useragent-${{ env.NEW_VERSION }}-py3-none-any.whl
-      env:
-        GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
-
+          dist/real_useragent-${{ env.NEW_VERSION }}-py3-none-any.whl

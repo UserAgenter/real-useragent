@@ -8,28 +8,6 @@ mob_path = os.path.join(current, "mobile_useragent.txt")
 
 
 class UserAgent:
-        """
-    UserAgent class for managing and retrieving random user agents.
-
-    Attributes:
-        desktop (list): List of desktop user agents.
-        mobile (list): List of mobile user agents.
-
-    Notes:
-        This class loads user agents from files and provides methods for retrieving random user agents based on mode and optional browser filter.
-        
-        - **desktop_useragent** : Retrieves a random desktop user agent.
-        - **mobile_useragent** : Retrieves a random mobile user agent.
-        - **get_useragent** : Retrieves a random user agent based on mode and optional browser filter.
-        - **mobile_chrome_useragent** : Retrieves a random mobile Chrome user agent.
-        - **desktop_chrome_useragent** : Retrieves a random desktop Chrome user agent.
-        - **mobile_firefox_useragent** : Retrieves a random mobile Firefox user agent.
-        - **desktop_firefox_useragent** : Retrieves a random desktop Firefox user agent.
-        - **mobile_safari_useragent** : Retrieves a random mobile Safari user agent.
-        - **desktop_safari_useragent** : Retrieves a random desktop Safari user agent.
-        - **desktop_linux_useragent** : Retrieves a random desktop Linux user agent.
-        - **desktop_mac_useragent** : Retrieves a random desktop Mac user agent.
-    """
     def __init__(self):
         # Load User-Agent from files
         self.desktop = self._load_useragent(desk_path)

@@ -54,4 +54,5 @@ with open(mobile_file, "w") as f:
     for i in mobile:
         f.write(f"{i.strip()}\n")
 
-print(f"{gr}Successfully Created New File with Updated User Agents{r}")
+os.remove("user-agents.json")
+print(f"{gr}Successfully Created New File with Updated User Agents{r} +{rd} Deleted User Agents File{r}")

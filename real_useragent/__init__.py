@@ -3,7 +3,7 @@ import sys
 import random
 import requests.utils
 
-__version__ = "1.0.7"
+__version__ = "1.0.8"
 
 UA_PLATFORM = sys.platform
 

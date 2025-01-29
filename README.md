@@ -85,7 +85,7 @@ mobile_safari_useragent = ua.mobile_safari_useragent()
 ```
 
 
-User Agents are Randomized Per-Session or Per-Request. Individual HTTP requests without a session will each have a random User-Agent selected from the list in [desktop_useragent.txt](https://github.com/UserAgenter/real-useragent/blob/main/real-useragent/desktop_useragent.txt) or [mobile_useragent.txt](https://github.com/UserAgenter/real-useragent/blob/main/real-useragent/mobile_useragent.txt) all files automatically updated every 8 hours.
+User Agents are Randomized Per-Session or Per-Request. Individual HTTP requests without a session will each have a random User-Agent selected from the list in [desktop_useragent.txt](https://github.com/UserAgenter/real-useragent/blob/main/real_useragent/desktop_useragent.txt) or [mobile_useragent.txt](https://github.com/UserAgenter/real-useragent/blob/main/real_useragent/mobile_useragent.txt) all files automatically updated every 8 hours.
 
 
 ---

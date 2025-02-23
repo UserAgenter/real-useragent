@@ -4,7 +4,7 @@ import random
 import requests.utils
 from .agent import UserAgent
 
-__version__ = "1.0.77"
+__version__ = "1.0.78"
 
 UA_PLATFORM = sys.platform
 

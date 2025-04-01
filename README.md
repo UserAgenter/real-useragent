@@ -94,8 +94,6 @@ Programmer : [@Pymmdrza](https://github.com/Pymmdrza)
 
 Credit : [Mmdrza.Com](https://mmdrza.com)
 
-Medium : [MMDRZA](https://mdrza.medium.com 'medium page mmdrza')
-
 ---
 
 # Donate

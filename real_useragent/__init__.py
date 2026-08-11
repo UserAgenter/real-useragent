@@ -12,8 +12,8 @@ current_path = os.path.abspath(os.path.dirname(__file__))
 desktop_file = os.path.join(current_path, 'desktop_useragent.txt')
 mobile_file = os.path.join(current_path, 'mobile_useragent.txt')
 
-with open(desktop_file) as fh:
-    desktop_agents = fh.read().splitlines()
+with open(desktop_file) as fx:
+    desktop_agents = fx.read().splitlines()
 
 with open(mobile_file) as fh:
     mobile_agents = fh.read().splitlines()
